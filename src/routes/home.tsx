@@ -50,7 +50,7 @@ function HomePage() {
       {/* Where to — moved above the map */}
       <div className="mx-5 mt-4 space-y-2">
         <button
-          onClick={() => navigate({ to: "/booking" })}
+          onClick={() => navigate({ to: "/booking", search: { instant: false } })}
           className="glass-strong flex w-full items-center gap-3 rounded-2xl px-4 py-4 text-left transition-all hover:border-primary/40"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15">
