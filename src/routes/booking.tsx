@@ -1,11 +1,14 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapPin, ArrowUpDown, Plus, CreditCard, Sparkles, Users, Leaf, Zap, X, CheckCircle2 } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
 import { TopBar } from "../components/TopBar";
 
 export const Route = createFileRoute("/booking")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    instant: search.instant === true || search.instant === "true" || search.instant === "1",
+  }),
   component: BookingPage,
 });
 
@@ -19,6 +22,7 @@ const rides = [
 
 function BookingPage() {
   const navigate = useNavigate();
+  const { instant } = Route.useSearch();
   const [pickup, setPickup] = useState("North York");
   const [drop, setDrop] = useState("Radiate Show");
   const [selected, setSelected] = useState("premium");
@@ -27,6 +31,12 @@ function BookingPage() {
   const [instantOpen, setInstantOpen] = useState(false);
 
   const ride = rides.find((r) => r.id === selected)!;
+
+  useEffect(() => {
+    if (instant) {
+      setInstantOpen(true);
+    }
+  }, [instant]);
 
   return (
     <AppShell>
