@@ -47,24 +47,7 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Live map preview with pulse */}
-      <div className="relative mx-5 mt-4 h-72 overflow-hidden rounded-3xl glass">
-        <MapCanvas variant="search" className="h-full w-full" />
-        {/* Floating chips */}
-        <div className="absolute left-3 top-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5">
-          <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
-          <span className="font-mono text-[10px] uppercase tracking-wider">Live · 12 nearby</span>
-        </div>
-        <div className="absolute bottom-3 right-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5">
-          <Sparkles className="h-3 w-3 text-primary" />
-          <span className="font-mono text-[10px] uppercase tracking-wider">AI Pickup ready</span>
-        </div>
-        <button className="absolute bottom-3 left-3 glass-strong flex h-10 w-10 items-center justify-center rounded-full">
-          <Navigation className="h-4 w-4 text-primary" />
-        </button>
-      </div>
-
-      {/* Where to */}
+      {/* Where to — moved above the map */}
       <div className="mx-5 mt-4 space-y-2">
         <button
           onClick={() => navigate({ to: "/booking" })}
@@ -78,6 +61,22 @@ function HomePage() {
             <p className="font-mono text-[11px] text-muted-foreground">Tap to search · saved · recents</p>
           </div>
           <span className="font-mono text-[10px] uppercase tracking-wider text-primary">Go →</span>
+        </button>
+      </div>
+
+      {/* Live map preview with pulse */}
+      <div className="relative mx-5 mt-4 h-72 overflow-hidden rounded-3xl glass">
+        <MapCanvas variant="search" className="h-full w-full" />
+        <div className="absolute left-3 top-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5">
+          <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
+          <span className="font-mono text-[10px] uppercase tracking-wider">Live · 12 nearby</span>
+        </div>
+        <div className="absolute bottom-3 right-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5">
+          <Sparkles className="h-3 w-3 text-primary" />
+          <span className="font-mono text-[10px] uppercase tracking-wider">AI Pickup ready</span>
+        </div>
+        <button className="absolute bottom-3 left-3 glass-strong flex h-10 w-10 items-center justify-center rounded-full">
+          <Navigation className="h-4 w-4 text-primary" />
         </button>
       </div>
 

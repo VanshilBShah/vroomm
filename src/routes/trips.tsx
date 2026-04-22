@@ -12,17 +12,17 @@ export const Route = createFileRoute("/trips")({
 const current = {
   driver: "Krimy Shah",
   rating: 3.5,
-  car: "GJ01 KS 999",
+  car: "ON 4K8 · CKR 992",
   price: 27.08,
   date: "04-05-25",
-  from: "Cygnet One",
-  to: "Girish Cold Drinks",
+  from: "North York",
+  to: "Radiate Show",
 };
 
 const past = [
-  { driver: "Isa Frank", rating: 4.5, car: "GJ01 SP 0110", price: 21.22, date: "12-02-25", from: "Evelyn Wiggins Dr", to: "York University" },
-  { driver: "John Gates", rating: 4.2, car: "GJ01 SP 9119", price: 21.22, date: "12-02-25", from: "Cygnet One", to: "Hyatt R" },
-  { driver: "Sara Lin", rating: 5.0, car: "GJ01 SP 4421", price: 18.40, date: "08-02-25", from: "SP Stadium", to: "Navrangpura" },
+  { driver: "Isa Frank", rating: 4.5, car: "ON 7B2 · SPR 011", price: 21.22, date: "12-02-25", from: "Evelyn Wiggins Dr", to: "York University" },
+  { driver: "John Gates", rating: 4.2, car: "ON 9C3 · SPR 919", price: 21.22, date: "12-02-25", from: "North York", to: "Hyatt Regency" },
+  { driver: "Sara Lin", rating: 5.0, car: "ON 4D1 · SPR 442", price: 18.40, date: "08-02-25", from: "Scotiabank Arena", to: "Liberty Village" },
 ];
 
 function TripsPage() {
