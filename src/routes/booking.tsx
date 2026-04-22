@@ -67,19 +67,24 @@ function BookingPage() {
         </div>
       </div>
 
-      {/* AI suggestion banner — UNIQUE */}
-      <div className="mx-5 mt-3 glass rounded-2xl p-3 flex items-center gap-3">
+      {/* AI suggestion banner — clickable, opens instant-book */}
+      <button
+        onClick={() => setInstantOpen(true)}
+        className={`mx-5 mt-3 glass rounded-2xl p-3 flex items-center gap-3 w-[calc(100%-2.5rem)] text-left transition-all hover:border-primary/60 ${
+          smartPickup ? "border-primary glow-neon" : ""
+        }`}
+      >
         <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "var(--gradient-primary)" }}>
           <Sparkles className="h-4 w-4 text-neon-foreground" />
         </div>
         <div className="flex-1">
-          <p className="text-xs font-medium">AI Smart Pickup</p>
+          <p className="text-xs font-medium">AI Smart Pickup · Instant Book</p>
           <p className="font-mono text-[10px] text-muted-foreground">
-            Walk 40m to Hyatt corner — save $2.80 & 3 min
+            {smartPickup ? "Applied · Hyatt corner pickup" : "Walk 40m to Hyatt corner — save $2.80 & 3 min"}
           </p>
         </div>
-        <button className="font-mono text-[10px] uppercase text-primary">Use →</button>
-      </div>
+        <span className="font-mono text-[10px] uppercase text-primary">{smartPickup ? "On ✓" : "Use →"}</span>
+      </button>
 
       {/* Ride options */}
       <div className="mx-5 mt-4 space-y-2">
