@@ -90,8 +90,8 @@ function ConfirmPage() {
           <button className="glass flex h-10 w-10 items-center justify-center rounded-full glow-violet">
             <MessageCircle className="h-4 w-4 text-violet" />
           </button>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive">
-            <Phone className="h-4 w-4 text-destructive-foreground" />
+          <button className="glass flex h-10 w-10 items-center justify-center rounded-full glow-violet">
+            <Phone className="h-4 w-4 text-violet" />
           </button>
         </div>
 

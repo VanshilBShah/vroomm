@@ -50,7 +50,7 @@ function ProfilePage() {
               <span className="font-mono text-sm">4.5</span>
               <span className="font-mono text-[11px] text-muted-foreground">· Gold</span>
             </div>
-            <p className="mt-1 font-mono text-[11px] text-muted-foreground">+91 ••••• 99012</p>
+            <p className="mt-1 font-mono text-[11px] text-muted-foreground">+1 ••• ••• 9012</p>
           </div>
         </div>
 
