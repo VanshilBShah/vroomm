@@ -23,6 +23,8 @@ function BookingPage() {
   const [drop, setDrop] = useState("Radiate Show");
   const [selected, setSelected] = useState("premium");
   const [split, setSplit] = useState(false);
+  const [smartPickup, setSmartPickup] = useState(false);
+  const [instantOpen, setInstantOpen] = useState(false);
 
   const ride = rides.find((r) => r.id === selected)!;
 
