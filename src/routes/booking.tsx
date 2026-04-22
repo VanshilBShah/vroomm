@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { MapPin, ArrowUpDown, Plus, CreditCard, Sparkles, Users, Leaf } from "lucide-react";
+import { MapPin, ArrowUpDown, Plus, CreditCard, Sparkles, Users, Leaf, Zap, X, CheckCircle2 } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
 import { TopBar } from "../components/TopBar";
