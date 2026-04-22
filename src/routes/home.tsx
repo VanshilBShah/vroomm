@@ -50,7 +50,7 @@ function HomePage() {
       {/* Where to — moved above the map */}
       <div className="mx-5 mt-4 space-y-2">
         <button
-          onClick={() => navigate({ to: "/booking" })}
+          onClick={() => navigate({ to: "/booking", search: { instant: false } })}
           className="glass-strong flex w-full items-center gap-3 rounded-2xl px-4 py-4 text-left transition-all hover:border-primary/40"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15">
@@ -71,24 +71,15 @@ function HomePage() {
           <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
           <span className="font-mono text-[10px] uppercase tracking-wider">Live · 12 nearby</span>
         </div>
-        <div className="absolute bottom-3 right-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5">
+        <button
+          onClick={() => navigate({ to: "/booking", search: { instant: true } })}
+          className="absolute bottom-3 right-3 glass flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all hover:border-primary/50"
+        >
           <Sparkles className="h-3 w-3 text-primary" />
           <span className="font-mono text-[10px] uppercase tracking-wider">AI Pickup ready</span>
-        </div>
-        <button className="absolute bottom-3 left-3 glass-strong flex h-10 w-10 items-center justify-center rounded-full">
-          <Navigation className="h-4 w-4 text-primary" />
         </button>
-      </div>
-
-      {/* Mood selector — UNIQUE */}
-      <div className="mx-5 mt-5">
-        <div className="mb-2 flex items-center justify-between">
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            Ride Mood
-          </p>
-          <span className="font-mono text-[10px] text-primary">syncs music & lights</span>
-        </div>
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar">
+...
+        <div className="mx-auto flex max-w-md flex-wrap justify-center gap-2">
           {moods.map((m) => {
             const active = mood === m.id;
             return (
