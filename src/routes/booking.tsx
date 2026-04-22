@@ -174,6 +174,68 @@ function BookingPage() {
           Book Now · ${ride.price}
         </button>
       </div>
+
+      {/* Instant Book sheet — one-tap confirm */}
+      {instantOpen && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-background/70 backdrop-blur-sm">
+          <div className="glass-strong w-full max-w-[480px] rounded-t-3xl p-6 animate-in slide-in-from-bottom">
+            <div className="mx-auto h-1 w-10 rounded-full bg-border" />
+            <div className="mt-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "var(--gradient-primary)" }}>
+                  <Zap className="h-4 w-4 text-neon-foreground" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-medium">Instant Book</h2>
+                  <p className="font-mono text-[10px] uppercase text-muted-foreground">AI Smart Pickup · 1-tap</p>
+                </div>
+              </div>
+              <button onClick={() => setInstantOpen(false)} className="text-muted-foreground">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="mt-4 glass rounded-2xl p-3 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">Pickup</span>
+                <span className="text-sm">Hyatt corner (40m walk)</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">Drop</span>
+                <span className="text-sm">{drop}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">Ride</span>
+                <span className="text-sm">{ride.name} · {ride.eta}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase text-muted-foreground">Pay</span>
+                <span className="text-sm">Apple Pay · •••• 4242</span>
+              </div>
+              <div className="my-1 h-px bg-border" />
+              <div className="flex items-center justify-between">
+                <span className="text-sm">Total <span className="text-success font-mono text-[10px]">−$2.80</span></span>
+                <span className="font-mono text-lg font-bold gradient-text">${(ride.price - 2.8).toFixed(2)}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                setSmartPickup(true);
+                setInstantOpen(false);
+                navigate({ to: "/confirm" });
+              }}
+              className="mt-4 w-full rounded-2xl py-4 text-center font-medium text-neon-foreground transition-all hover:scale-[1.02] active:scale-[0.98] inline-flex items-center justify-center gap-2"
+              style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-neon)" }}
+            >
+              <CheckCircle2 className="h-4 w-4" /> Confirm & Book
+            </button>
+            <p className="mt-2 text-center font-mono text-[10px] text-muted-foreground">
+              Tap once — driver dispatched instantly
+            </p>
+          </div>
+        </div>
+      )}
     </AppShell>
   );
 }
