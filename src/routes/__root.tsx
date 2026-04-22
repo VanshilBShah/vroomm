@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { name: "description", content: "Futuristic ride-booking. AI Smart Pickup, Ride Mood, SafetyShield & live carbon scoring." },
       { name: "author", content: "VRoooM" },
       { property: "og:title", content: "VRoooM — Move with Ease" },
-      { property: "og:description", content: "Futuristic ride-booking with AI Smart Pickup, Ride Mood & SafetyShield." },
+      { property: "og:description", content: "Futuristic ride-booking. AI Smart Pickup, Ride Mood, SafetyShield & live carbon scoring." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "VRoooM — Move with Ease" },
+      { name: "twitter:description", content: "Futuristic ride-booking. AI Smart Pickup, Ride Mood, SafetyShield & live carbon scoring." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4f3c0540-1570-404b-89e8-4e7f8513c16e/id-preview-a96d440e--64e45ccc-53fa-45dd-993e-5236a2692dc3.lovable.app-1776895488792.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4f3c0540-1570-404b-89e8-4e7f8513c16e/id-preview-a96d440e--64e45ccc-53fa-45dd-993e-5236a2692dc3.lovable.app-1776895488792.png" },
     ],
     links: [
       {
