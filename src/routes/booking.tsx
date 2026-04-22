@@ -19,8 +19,8 @@ const rides = [
 
 function BookingPage() {
   const navigate = useNavigate();
-  const [pickup, setPickup] = useState("Cygnet One");
-  const [drop, setDrop] = useState("Girish Cold Drinks");
+  const [pickup, setPickup] = useState("North York");
+  const [drop, setDrop] = useState("Radiate Show");
   const [selected, setSelected] = useState("premium");
   const [split, setSplit] = useState(false);
 

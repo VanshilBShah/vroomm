@@ -36,7 +36,7 @@ function LoginPage() {
 
             <div className="mt-7 flex items-center gap-2 rounded-2xl border border-border bg-input/40 p-1.5 transition-all focus-within:border-primary focus-within:glow-neon">
               <button className="flex items-center gap-1.5 rounded-xl bg-background/50 px-3 py-2.5 font-mono text-sm">
-                🇮🇳 +91
+                🇨🇦 +1
               </button>
               <input
                 value={phone}
@@ -61,7 +61,7 @@ function LoginPage() {
           <>
             <h2 className="text-center text-2xl font-medium">Verify it's you</h2>
             <p className="mt-1 text-center text-sm text-muted-foreground">
-              Code sent to <span className="font-mono text-primary">+91 {phone}</span>
+              Code sent to <span className="font-mono text-primary">+1 {phone}</span>
             </p>
 
             <div className="mt-7 flex justify-center gap-3">
