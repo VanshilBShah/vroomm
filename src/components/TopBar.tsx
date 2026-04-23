@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function TopBar({
   title,
@@ -28,7 +29,10 @@ export function TopBar({
           {title}
         </h1>
       )}
-      <div className="flex h-10 w-10 items-center justify-center">{right}</div>
+      <div className="flex items-center gap-2">
+        {right}
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

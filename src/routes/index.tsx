@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Facebook, Chrome, Apple } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import vroomLogo from "@/assets/vroom-logo.png";
 
 export const Route = createFileRoute("/")({
   component: LoginPage,
@@ -13,11 +15,21 @@ function LoginPage() {
   const [otp, setOtp] = useState(["", "", "", ""]);
 
   return (
-    <div className="relative mx-auto flex min-h-screen max-w-[480px] flex-col px-6 pb-10 pt-16">
+    <div className="relative mx-auto flex min-h-screen max-w-[480px] flex-col px-6 pb-10 pt-6">
+      {/* Theme toggle */}
+      <div className="flex justify-end">
+        <ThemeToggle />
+      </div>
+
       {/* Logo */}
-      <div className="text-center">
-        <h1 className="text-5xl font-bold tracking-tight text-foreground">VRoooM</h1>
-        <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+      <div className="mt-4 flex flex-col items-center text-center">
+        <img
+          src={vroomLogo}
+          alt="VRoooM logo"
+          className="h-20 w-20 object-contain dark:invert"
+        />
+        <h1 className="mt-3 text-5xl font-bold tracking-tight text-foreground">VRoooM</h1>
+        <p className="mt-2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
           Move with ease
         </p>
       </div>
