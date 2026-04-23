@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { CheckCircle2, MessageCircle, Phone, Shield, Share2, X, Star } from "lucide-react";
+import { CheckCircle2, MessageCircle, Phone, Shield, Share2, X, Star, Radar, UserCheck, Loader2 } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
 import { TopBar } from "../components/TopBar";
