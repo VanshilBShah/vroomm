@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Search, MapPin, Navigation, Bell, Sparkles, Zap, Repeat, Shield, Leaf } from "lucide-react";
+import { Search, Bell, Sparkles, Zap, Repeat, Shield, Leaf } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
 
@@ -16,26 +16,28 @@ const moods = [
 ];
 
 const quickActions = [
-  { icon: Repeat, label: "Rebook", sub: "Last trip" },
-  { icon: Shield, label: "Safety", sub: "Shield ON" },
-  { icon: Leaf, label: "Eco", sub: "12kg saved" },
+  { icon: Repeat, label: "Rebook", sub: "Last trip", to: "/booking" as const, search: { instant: true } },
+  { icon: Shield, label: "Safety", sub: "Shield ON", to: "/confirm" as const, search: undefined },
+  { icon: Leaf, label: "Eco", sub: "12kg saved", to: "/trips" as const, search: undefined },
 ];
 
 function HomePage() {
   const navigate = useNavigate();
-  const [pickup, setPickup] = useState("");
-  const [drop, setDrop] = useState("");
   const [mood, setMood] = useState("chill");
 
   return (
     <AppShell>
       {/* Top status bar */}
       <div className="flex items-center justify-between px-5 pt-6">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            Good evening
-          </p>
-          <h1 className="text-xl font-medium">Vanshil ✦</h1>
+        <div className="flex items-center gap-3">
+          <div>
+            <p className="font-mono text-3xl font-bold tracking-tight gradient-aurora-text leading-none">
+              VRoooM
+            </p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              Good evening · Vanshil
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <button className="glass flex h-10 w-10 items-center justify-center rounded-full">
@@ -78,8 +80,14 @@ function HomePage() {
           <Sparkles className="h-3 w-3 text-primary" />
           <span className="font-mono text-[10px] uppercase tracking-wider">AI Pickup ready</span>
         </button>
-...
-        <div className="mx-auto flex max-w-md flex-wrap justify-center gap-2">
+      </div>
+
+      {/* Ride mood */}
+      <div className="mt-5 px-5">
+        <p className="text-center font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          Ride mood
+        </p>
+        <div className="mx-auto mt-3 flex max-w-md flex-wrap justify-center gap-2">
           {moods.map((m) => {
             const active = mood === m.id;
             return (
@@ -100,10 +108,11 @@ function HomePage() {
 
       {/* Quick actions */}
       <div className="mx-5 mt-5 grid grid-cols-3 gap-2">
-        {quickActions.map(({ icon: Icon, label, sub }) => (
+        {quickActions.map(({ icon: Icon, label, sub, to, search }) => (
           <button
             key={label}
-            className="glass flex flex-col items-start rounded-2xl p-3 text-left transition-all hover:border-primary/40"
+            onClick={() => navigate(search ? { to, search } : { to })}
+            className="glass flex flex-col items-start rounded-2xl p-3 text-left transition-all hover:border-primary/40 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Icon className="h-4 w-4 text-primary" />
             <p className="mt-2 text-sm font-medium">{label}</p>

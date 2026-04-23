@@ -60,11 +60,11 @@ function TripsPage() {
                   <span className="font-mono text-xs">{current.rating}</span>
                 </div>
               </div>
-              <button className="glass flex h-9 w-9 items-center justify-center rounded-full">
+              <button className="glass flex h-9 w-9 items-center justify-center rounded-full glow-violet">
                 <MessageCircle className="h-4 w-4 text-violet" />
               </button>
-              <button className="flex h-9 w-9 items-center justify-center rounded-full bg-destructive">
-                <Phone className="h-4 w-4 text-destructive-foreground" />
+              <button className="glass flex h-9 w-9 items-center justify-center rounded-full glow-violet">
+                <Phone className="h-4 w-4 text-violet" />
               </button>
             </div>
 
@@ -113,11 +113,11 @@ function TripsPage() {
                     <span className="font-mono text-xs">{p.rating}</span>
                   </div>
                 </div>
-                <button className="glass flex h-8 w-8 items-center justify-center rounded-full">
+                <button className="glass flex h-8 w-8 items-center justify-center rounded-full glow-violet">
                   <MessageCircle className="h-3.5 w-3.5 text-violet" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-full bg-destructive/80">
-                  <Phone className="h-3.5 w-3.5 text-destructive-foreground" />
+                <button className="glass flex h-8 w-8 items-center justify-center rounded-full glow-violet">
+                  <Phone className="h-3.5 w-3.5 text-violet" />
                 </button>
               </div>
               <div className="my-3 h-px bg-border" />
