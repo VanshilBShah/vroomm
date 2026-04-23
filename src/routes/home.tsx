@@ -108,10 +108,11 @@ function HomePage() {
 
       {/* Quick actions */}
       <div className="mx-5 mt-5 grid grid-cols-3 gap-2">
-        {quickActions.map(({ icon: Icon, label, sub }) => (
+        {quickActions.map(({ icon: Icon, label, sub, to, search }) => (
           <button
             key={label}
-            className="glass flex flex-col items-start rounded-2xl p-3 text-left transition-all hover:border-primary/40"
+            onClick={() => navigate(search ? { to, search } : { to })}
+            className="glass flex flex-col items-start rounded-2xl p-3 text-left transition-all hover:border-primary/40 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Icon className="h-4 w-4 text-primary" />
             <p className="mt-2 text-sm font-medium">{label}</p>
