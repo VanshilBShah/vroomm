@@ -18,7 +18,7 @@ const reasons = [
 
 function ConfirmPage() {
   const navigate = useNavigate();
-  const [stage, setStage] = useState<"confirmed" | "driver" | "cancel">("confirmed");
+  const [stage, setStage] = useState<"searching" | "matching" | "confirmed" | "driver" | "cancel">("searching");
   const [eta, setEta] = useState(120);
   const [shieldOn, setShieldOn] = useState(true);
   const [shareContacts, setShareContacts] = useState([
@@ -42,6 +42,116 @@ function ConfirmPage() {
     const t = setInterval(() => setEta((e) => Math.max(0, e - 1)), 1000);
     return () => clearInterval(t);
   }, []);
+
+  // Booking sequence: searching (2s) -> matching (2s) -> confirmed
+  useEffect(() => {
+    if (stage === "searching") {
+      const t = setTimeout(() => setStage("matching"), 2000);
+      return () => clearTimeout(t);
+    }
+    if (stage === "matching") {
+      const t = setTimeout(() => setStage("confirmed"), 2000);
+      return () => clearTimeout(t);
+    }
+  }, [stage]);
+
+  if (stage === "searching" || stage === "matching") {
+    const isMatching = stage === "matching";
+    const steps = [
+      { key: "searching", label: "Scanning nearby drivers", icon: Radar },
+      { key: "matching", label: "Matching best ride", icon: UserCheck },
+      { key: "confirmed", label: "Confirming pickup", icon: CheckCircle2 },
+    ];
+    const activeIdx = isMatching ? 1 : 0;
+
+    return (
+      <AppShell>
+        <TopBar title="Booking" back="/booking" />
+        <div className="relative mx-5 h-[420px] overflow-hidden rounded-3xl glass">
+          <MapCanvas variant="route" className="h-full w-full" />
+
+          {/* Radar pulse rings */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <span className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/40 animate-ping" />
+            <span
+              className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/20 animate-ping"
+              style={{ animationDelay: "0.6s" }}
+            />
+            <span
+              className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 animate-ping"
+              style={{ animationDelay: "1.2s" }}
+            />
+          </div>
+
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in">
+            <div className="glass-strong rounded-2xl px-6 py-5 text-center min-w-[220px]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/15">
+                {isMatching ? (
+                  <UserCheck className="h-7 w-7 text-primary animate-pulse" />
+                ) : (
+                  <Radar className="h-7 w-7 text-primary animate-pulse" />
+                )}
+              </div>
+              <p className="mt-3 text-base font-medium">
+                {isMatching ? "Driver found" : "Finding your ride"}
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                {isMatching ? "Locking in pickup..." : "Scanning nearby..."}
+              </p>
+              <div className="mt-3 flex justify-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce" />
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce"
+                  style={{ animationDelay: "0.15s" }}
+                />
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce"
+                  style={{ animationDelay: "0.3s" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step tracker */}
+        <div className="mx-5 mt-5 glass-strong rounded-2xl p-4 space-y-3">
+          {steps.map((s, i) => {
+            const done = i < activeIdx;
+            const active = i === activeIdx;
+            const Icon = s.icon;
+            return (
+              <div key={s.key} className="flex items-center gap-3 animate-fade-in">
+                <div
+                  className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
+                    done
+                      ? "bg-success/20"
+                      : active
+                        ? "bg-primary/20 glow-neon"
+                        : "bg-input"
+                  }`}
+                >
+                  {done ? (
+                    <CheckCircle2 className="h-4 w-4 text-success" />
+                  ) : active ? (
+                    <Loader2 className="h-4 w-4 text-primary animate-spin" />
+                  ) : (
+                    <Icon className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </div>
+                <span
+                  className={`text-sm ${
+                    active ? "text-foreground font-medium" : done ? "text-muted-foreground line-through" : "text-muted-foreground"
+                  }`}
+                >
+                  {s.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </AppShell>
+    );
+  }
 
   if (stage === "confirmed") {
     return (
