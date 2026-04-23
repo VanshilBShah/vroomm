@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Search, MapPin, Navigation, Bell, Sparkles, Zap, Repeat, Shield, Leaf } from "lucide-react";
+import { Search, Bell, Sparkles, Zap, Repeat, Shield, Leaf } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
 
@@ -23,19 +23,21 @@ const quickActions = [
 
 function HomePage() {
   const navigate = useNavigate();
-  const [pickup, setPickup] = useState("");
-  const [drop, setDrop] = useState("");
   const [mood, setMood] = useState("chill");
 
   return (
     <AppShell>
       {/* Top status bar */}
       <div className="flex items-center justify-between px-5 pt-6">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            Good evening
-          </p>
-          <h1 className="text-xl font-medium">Vanshil ✦</h1>
+        <div className="flex items-center gap-3">
+          <div>
+            <p className="font-mono text-3xl font-bold tracking-tight gradient-aurora-text leading-none">
+              VRoooM
+            </p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              Good evening · Vanshil
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <button className="glass flex h-10 w-10 items-center justify-center rounded-full">
@@ -78,8 +80,14 @@ function HomePage() {
           <Sparkles className="h-3 w-3 text-primary" />
           <span className="font-mono text-[10px] uppercase tracking-wider">AI Pickup ready</span>
         </button>
-...
-        <div className="mx-auto flex max-w-md flex-wrap justify-center gap-2">
+      </div>
+
+      {/* Ride mood */}
+      <div className="mt-5 px-5">
+        <p className="text-center font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          Ride mood
+        </p>
+        <div className="mx-auto mt-3 flex max-w-md flex-wrap justify-center gap-2">
           {moods.map((m) => {
             const active = mood === m.id;
             return (
