@@ -16,9 +16,9 @@ const moods = [
 ];
 
 const quickActions = [
-  { icon: Repeat, label: "Rebook", sub: "Last trip" },
-  { icon: Shield, label: "Safety", sub: "Shield ON" },
-  { icon: Leaf, label: "Eco", sub: "12kg saved" },
+  { icon: Repeat, label: "Rebook", sub: "Last trip", to: "/booking" as const, search: { instant: true } },
+  { icon: Shield, label: "Safety", sub: "Shield ON", to: "/confirm" as const, search: undefined },
+  { icon: Leaf, label: "Eco", sub: "12kg saved", to: "/trips" as const, search: undefined },
 ];
 
 function HomePage() {
