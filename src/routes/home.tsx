@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Search, Bell, Sparkles, Repeat, Shield, Leaf } from "lucide-react";
 import { AppShell } from "../components/AppShell";
 import { MapCanvas } from "../components/MapCanvas";
+import { ThemeToggle } from "../components/ThemeToggle";
+import vroomLogo from "@/assets/vroom-logo.png";
 
 export const Route = createFileRoute("/home")({
   component: HomePage,
@@ -29,15 +31,25 @@ function HomePage() {
     <AppShell>
       {/* Top status bar */}
       <div className="flex items-center justify-between px-5 pt-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground leading-none">
-            VRoooM
-          </h1>
-          <p className="mt-1.5 text-xs text-muted-foreground">
-            Good evening, Vanshil
-          </p>
+        <div className="flex items-center gap-2.5">
+          <img
+            src={vroomLogo}
+            alt="VRoooM logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain dark:invert"
+          />
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground leading-none">
+              VRoooM
+            </h1>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Good evening, Vanshil
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary">
             <Bell className="h-[18px] w-[18px]" strokeWidth={1.8} />
           </button>
