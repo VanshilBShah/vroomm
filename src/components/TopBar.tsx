@@ -11,11 +11,11 @@ export function TopBar({
   right?: React.ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between px-5 pb-3 pt-6">
+    <header className="sticky top-0 z-30 flex items-center justify-between bg-background/80 px-5 pb-3 pt-5 backdrop-blur-md">
       {back ? (
         <Link
           to={back}
-          className="glass flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-105"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary"
           aria-label="Back"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -24,7 +24,7 @@ export function TopBar({
         <div className="h-10 w-10" />
       )}
       {title && (
-        <h1 className="font-mono text-sm uppercase tracking-[0.3em] text-muted-foreground">
+        <h1 className="text-base font-semibold tracking-tight text-foreground">
           {title}
         </h1>
       )}

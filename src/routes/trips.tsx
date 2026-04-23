@@ -30,18 +30,17 @@ function TripsPage() {
 
   return (
     <AppShell>
-      <TopBar title="My Trips" back={false} />
+      <TopBar title="My trips" back={false} />
 
       {/* Tabs */}
-      <div className="mx-5 glass-strong flex rounded-full p-1.5">
+      <div className="mx-5 flex rounded-full border border-border bg-secondary/50 p-1">
         {(["current", "past"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex-1 rounded-full py-2.5 text-sm font-medium capitalize transition-all ${
-              tab === t ? "text-neon-foreground" : "text-muted-foreground"
+            className={`flex-1 rounded-full py-2.5 text-sm font-semibold capitalize transition-all ${
+              tab === t ? "bg-card text-foreground shadow-[var(--shadow-card)]" : "text-muted-foreground"
             }`}
-            style={tab === t ? { background: "var(--gradient-primary)", boxShadow: "var(--shadow-neon)" } : undefined}
           >
             {t}
           </button>
@@ -50,80 +49,75 @@ function TripsPage() {
 
       {tab === "current" ? (
         <div className="mx-5 mt-4">
-          <div className="glass-strong rounded-3xl p-4">
+          <div className="rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-violet" />
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-accent" />
               <div className="flex-1">
-                <p className="font-medium">{current.driver}</p>
+                <p className="font-semibold">{current.driver}</p>
                 <div className="flex items-center gap-1">
-                  <Star className="h-3 w-3 fill-warn text-warn" />
-                  <span className="font-mono text-xs">{current.rating}</span>
+                  <Star className="h-3 w-3 fill-foreground text-foreground" />
+                  <span className="text-xs">{current.rating}</span>
                 </div>
               </div>
-              <button className="glass flex h-9 w-9 items-center justify-center rounded-full glow-violet">
-                <MessageCircle className="h-4 w-4 text-violet" />
+              <button className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary">
+                <MessageCircle className="h-4 w-4 text-foreground" />
               </button>
-              <button className="glass flex h-9 w-9 items-center justify-center rounded-full glow-violet">
-                <Phone className="h-4 w-4 text-violet" />
+              <button className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary">
+                <Phone className="h-4 w-4 text-foreground" />
               </button>
             </div>
 
             <div className="my-3 h-px bg-border" />
 
-            <Row label="Car no." value={current.car} mono />
-            <Row label="Price" value={`$${current.price}`} mono />
-            <Row label="Date" value={current.date} mono />
+            <Row label="Car no." value={current.car} />
+            <Row label="Price" value={`$${current.price}`} />
+            <Row label="Date" value={current.date} />
 
             <div className="mt-3 space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-primary" />
+                <span className="h-2 w-2 rounded-full bg-foreground" />
                 <span className="text-sm">{current.from}</span>
               </div>
               <div className="ml-[3px] h-3 w-px bg-border" />
               <div className="flex items-center gap-2">
-                <MapPin className="h-3 w-3 text-violet" />
+                <MapPin className="h-3 w-3 text-foreground" />
                 <span className="text-sm">{current.to}</span>
               </div>
             </div>
 
-            <div className="relative mt-4 h-32 overflow-hidden rounded-2xl">
+            <div className="relative mt-4 h-32 overflow-hidden rounded-xl border border-border">
               <MapCanvas variant="route" className="h-full w-full" />
             </div>
 
-            <button
-              className="mt-4 w-full rounded-2xl py-3.5 font-medium text-neon-foreground transition-all hover:scale-[1.02]"
-              style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-neon)" }}
-            >
-              <span className="inline-flex items-center gap-2">
-                <Navigation className="h-4 w-4" /> Track Live
-              </span>
+            <button className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3.5 font-semibold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.99]">
+              <Navigation className="h-4 w-4" /> Track live
             </button>
           </div>
         </div>
       ) : (
         <div className="mx-5 mt-4 space-y-3">
           {past.map((p, i) => (
-            <div key={i} className="glass rounded-2xl p-4">
+            <div key={i} className="rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-3">
-                <div className="h-11 w-11 rounded-full bg-gradient-to-br from-violet to-primary" />
+                <div className="h-11 w-11 rounded-full bg-gradient-to-br from-accent to-primary" />
                 <div className="flex-1">
-                  <p className="font-medium">{p.driver}</p>
+                  <p className="font-semibold">{p.driver}</p>
                   <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 fill-warn text-warn" />
-                    <span className="font-mono text-xs">{p.rating}</span>
+                    <Star className="h-3 w-3 fill-foreground text-foreground" />
+                    <span className="text-xs">{p.rating}</span>
                   </div>
                 </div>
-                <button className="glass flex h-8 w-8 items-center justify-center rounded-full glow-violet">
-                  <MessageCircle className="h-3.5 w-3.5 text-violet" />
+                <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary">
+                  <MessageCircle className="h-3.5 w-3.5 text-foreground" />
                 </button>
-                <button className="glass flex h-8 w-8 items-center justify-center rounded-full glow-violet">
-                  <Phone className="h-3.5 w-3.5 text-violet" />
+                <button className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-card transition-all hover:bg-secondary">
+                  <Phone className="h-3.5 w-3.5 text-foreground" />
                 </button>
               </div>
               <div className="my-3 h-px bg-border" />
-              <Row label="Car no." value={p.car} mono />
-              <Row label="Price" value={`$${p.price}`} mono />
-              <Row label="Date" value={p.date} mono />
+              <Row label="Car no." value={p.car} />
+              <Row label="Price" value={`$${p.price}`} />
+              <Row label="Date" value={p.date} />
             </div>
           ))}
         </div>
@@ -132,11 +126,11 @@ function TripsPage() {
   );
 }
 
-function Row({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
+function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between py-1">
       <span className="text-sm text-muted-foreground">{label}</span>
-      <span className={`text-sm ${mono ? "font-mono" : ""}`}>{value}</span>
+      <span className="text-sm font-medium">{value}</span>
     </div>
   );
 }

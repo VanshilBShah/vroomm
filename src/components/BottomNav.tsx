@@ -11,7 +11,7 @@ export function BottomNav() {
   const { pathname } = useLocation();
   return (
     <nav className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2">
-      <div className="glass-strong flex items-center gap-1 rounded-full px-2 py-2 shadow-elegant">
+      <div className="flex items-center gap-1 rounded-full border border-border bg-card px-1.5 py-1.5 shadow-[var(--shadow-elegant)]">
         {items.map(({ to, icon: Icon, label }) => {
           const active = pathname === to || (to === "/home" && pathname === "/");
           return (
@@ -19,14 +19,14 @@ export function BottomNav() {
               key={to}
               to={to}
               aria-label={label}
-              className={`relative flex h-12 w-14 items-center justify-center rounded-full transition-all duration-300 ${
+              className={`relative flex h-11 items-center justify-center gap-2 rounded-full px-4 transition-all duration-200 ${
                 active
-                  ? "bg-[var(--gradient-primary)] text-neon-foreground glow-neon"
+                  ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
-              style={active ? { background: "var(--gradient-primary)" } : undefined}
             >
-              <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 1.8} />
+              <Icon className="h-[18px] w-[18px]" strokeWidth={active ? 2.4 : 2} />
+              {active && <span className="text-sm font-medium">{label}</span>}
             </Link>
           );
         })}
